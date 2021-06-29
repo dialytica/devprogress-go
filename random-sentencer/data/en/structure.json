@@ -1,0 +1,144 @@
+{
+    "structures": ["SVAO", "ASVO", "ASVAO"],
+    "data": {
+        "S": {
+            "name": "Subject",
+            "sources" : [
+                {
+                    "name": "i",
+                    "type": "text",
+                    "data": ["I"],
+                    "tags: ["first_person", "i", "singular"],
+                    "weight": 1
+                },
+                {
+                    "name": "you",
+                    "type": "text",
+                    "data": ["You"],
+                    "tags": ["second_person", "plural"],
+                    "weight": 1
+                },
+                {
+                    "name": "singular_pronouns",
+                    "type": "text",
+                    "data": ["He", "She", "It"],
+                    "tags": ["third_person", "singular"],
+                    "weight": 1
+                },
+                {
+                    "name": "plural_pronouns",
+                    "type": "text",
+                    "data": ["They", "We"],
+                    "tags": ["third_person", "plural"],
+                    "weight": 1
+
+                },
+                {
+                    "name": "nouns",
+                    "type": "file",
+                    "data": "nouns",
+                    "tags": ["third_person", "singular", "plural", "nouns"],
+                    "weight": 1
+                },
+                {
+                    "name": "verb_ing",
+                    "type": "file",
+                    "data": "verbs",
+                    "tags": ["third_person", "singular", "verbs"],
+                    "weight": 1
+
+                }
+            ],
+            "rules": [
+                {
+                    "tags": ["nouns"],
+                    "rule": "capitalize"
+                },
+                {
+                    "tags": ["verbs", "singular"],
+                    "rule": "suffix/ing"
+                },
+                {
+                    "tags": ["nouns", "plural"],
+                    "rule": "suffix/s"
+                }
+            ]
+        },
+        "V": {
+            "name": "Verbs",
+            "sources": [
+                {
+                    "name": "am",
+                    "type": "text",
+                    "data": ["am"],
+                    "tags": ["i", "singular"],
+                    "weight": 1
+                },
+                {
+                    "name": "is",
+                    "type": "text",
+                    "data": ["is"],
+                    "tags": ["is", "singular"],
+                    "weight": 1
+                },
+                {
+                    "name": "are",
+                    "type": "text",
+                    "data": ["are"],
+                    "tags": ["are", "plural"],
+                    "weight": 1
+                },
+                {
+                    "name": "verbs",
+                    "type": "file",
+                    "data": "verbs",
+                    "tags": ["singular", "plural", "verbs"],
+                    "weight": 1
+                }
+            ]
+        },
+        "A": {
+            "name": "Adjectives",
+            "sources": [
+                {
+                    "name": "adjectives",
+                    "type": "file",
+                    "data": "adjectives",
+                    "tags": ["compound", "adjectives"],
+                    "weight": 1
+                },
+                {
+                    "name": "verb_ing",
+                    "type": "file",
+                    "data": "verbs",
+                    "tags": ["compound", "verbs"],
+                    "weight": 1
+                }
+            ],
+            rules: [
+                {
+                    "tags": ["verbs"],
+                    "rule": "suffix/ing"
+                }
+            ]
+        },
+        "O": {
+            "name": "Objects",
+            "sources": [
+                {
+                    "name": "nouns",
+                    "type": "file",
+                    "data": "nouns",
+                    "tags": ["singular", "plural", "nouns"],
+                    "weight": 1
+                }
+            ],
+            "rules": [
+                {
+                    "tags": ["plural", "nouns"],
+                    "rule": "suffix/s"
+                }
+            ]
+        }
+    }
+}
