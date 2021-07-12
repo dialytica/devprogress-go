@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "structures": ["SVAO", "ASVO", "ASVAO"],
     "data": {
         "S": {
@@ -61,10 +62,75 @@
                 {
                     "tags": ["nouns", "plural"],
                     "rule": "suffix/s"
+=======
+    "Structures": ["SVAO", "ASVO", "ASVAO"],
+    "Data": {
+        "S": {
+            "Name": "Subject",
+            "Sources" : [
+                {
+                    "Name": "i",
+                    "Type": "text",
+                    "Data": ["I"],
+                    "Tags: ["first_person", "i", "singular"],
+                    "Weight": 1
+                },
+                {
+                    "Name": "you",
+                    "Type": "text",
+                    "Data": ["You"],
+                    "Tags": ["second_person", "plural"],
+                    "Weight": 1
+                },
+                {
+                    "Name": "singular_pronouns",
+                    "Type": "text",
+                    "Data": ["He", "She", "It"],
+                    "Tags": ["third_person", "singular"],
+                    "Weight": 1
+                },
+                {
+                    "Name": "plural_pronouns",
+                    "Type": "text",
+                    "Data": ["They", "We"],
+                    "Tags": ["third_person", "plural"],
+                    "Weight": 1
+
+                },
+                {
+                    "Name": "nouns",
+                    "Type": "file",
+                    "Data": ["nouns"],
+                    "Tags": ["third_person", "singular", "plural", "nouns"],
+                    "Weight": 1
+                },
+                {
+                    "Name": "verb_ing",
+                    "Type": "file",
+                    "Data": ["verbs"],
+                    "Tags": ["third_person", "singular", "verbs"],
+                    "Weight": 1
+
+                }
+            ],
+            "Rules": [
+                {
+                    "Tags": ["nouns"],
+                    "Rule": ["capitalize"]
+                },
+                {
+                    "Tags": ["verbs", "singular"],
+                    "Rule": ["suffix/ing"]
+                },
+                {
+                    "Tags": ["nouns", "plural"],
+                    "Rule": ["suffix/s"]
+>>>>>>> 197b98d (created structure for a separate files and wip method to access it)
                 }
             ]
         },
         "V": {
+<<<<<<< HEAD
             "name": "Verbs",
             "sources": [
                 {
@@ -94,10 +160,42 @@
                     "data": "verbs",
                     "tags": ["singular", "plural", "verbs"],
                     "weight": 1
+=======
+            "Name": "Verbs",
+            "Sources": [
+                {
+                    "Name": "am",
+                    "Type": "text",
+                    "Data": ["am"],
+                    "Tags": ["i", "singular"],
+                    "Weight": 1
+                },
+                {
+                    "Name": "is",
+                    "Type": "text",
+                    "Data": ["is"],
+                    "Tags": ["is", "singular"],
+                    "Weight": 1
+                },
+                {
+                    "Name": "are",
+                    "Type": "text",
+                    "Data": ["are"],
+                    "Tags": ["are", "plural"],
+                    "Weight": 1
+                },
+                {
+                    "Name": "verbs",
+                    "Type": "file",
+                    "Data": ["verbs"],
+                    "Tags": ["singular", "plural", "verbs"],
+                    "Weight": 1
+>>>>>>> 197b98d (created structure for a separate files and wip method to access it)
                 }
             ]
         },
         "A": {
+<<<<<<< HEAD
             "name": "Adjectives",
             "sources": [
                 {
@@ -119,10 +217,34 @@
                 {
                     "tags": ["verbs"],
                     "rule": "suffix/ing"
+=======
+            "Name": "Adjectives",
+            "Sources": [
+                {
+                    "Name": "adjectives",
+                    "Type": "file",
+                    "Data": ["adjectives"],
+                    "Tags": ["compound", "adjectives"],
+                    "Weight": 1
+                },
+                {
+                    "Name": "verb_ing",
+                    "Type": "file",
+                    "Data": ["verbs"],
+                    "Tags": ["compound", "verbs"],
+                    "Weight": 1
+                }
+            ],
+            Rules: [
+                {
+                    "Tags": ["verbs"],
+                    "Rule": ["suffix/ing"]
+>>>>>>> 197b98d (created structure for a separate files and wip method to access it)
                 }
             ]
         },
         "O": {
+<<<<<<< HEAD
             "name": "Objects",
             "sources": [
                 {
@@ -137,6 +259,22 @@
                 {
                     "tags": ["plural", "nouns"],
                     "rule": "suffix/s"
+=======
+            "Name": "Objects",
+            "Sources": [
+                {
+                    "Name": "nouns",
+                    "Type": "file",
+                    "Data": ["nouns"],
+                    "Tags": ["singular", "plural", "nouns"],
+                    "Weight": 1
+                }
+            ],
+            "Rules": [
+                {
+                    "Tags": ["plural", "nouns"],
+                    "Rule": ["suffix/s"]
+>>>>>>> 197b98d (created structure for a separate files and wip method to access it)
                 }
             ]
         }

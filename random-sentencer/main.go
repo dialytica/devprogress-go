@@ -1,9 +1,13 @@
 package main
 
 import (
+    "io"
     "fmt"
     "math/rand"
     "time"
+    "os"
+    "json"
+    "bufio"
 )
 
 var subjects []string = []string{
@@ -78,6 +82,80 @@ var adjectives []string = []string{
     "elated",
     "elongated",
     "short",
+}
+
+type LanguageDefinition struct {
+    Structures []string
+    Data       DataMap
+}
+
+type DataMap map[string]WordDefinition
+
+type WordDefinition struct {
+    Name    string
+    Sources []SourceDefinition
+    Rules   []WordRuleDefinition
+}
+
+type SourceDefinition struct {
+    Name   string
+    Type   string
+    Data   []string
+    Tags   []string
+    Weight float64
+}
+
+type WordRuleDefinition struct {
+    Tags []string
+    Rule []string
+}
+
+func CheckError(e error) {
+    if e != nil {
+        panic(e)
+    }
+}
+
+func LoadLanguageDef(reader *bufio.Reader) (LanguageDefinition, error) {
+    decoder := json.NewDecoder(reader)
+
+    var langDef LanguageDefinition
+    err = decoder.Decode(&langDef)
+    CheckError(err)
+
+    return langDef, nil
+}
+
+func GetWord(index int, reader *bufio.Reader) (string, error) {
+    scanner := bufio.NewScanner(reader)
+    c := 0
+
+    for scanner.Scan() {
+        c++
+        if c == index {
+            return scanner.Text(), nil
+        }
+    }
+
+    return nil, fmt.Errorf("index: %g out of range", index)
+}
+
+func CountWordStream(reader *bufio.Reader) (int, error) {
+    scanner := bufio.NewScanner(reader)
+    c := 0
+
+    for scanner.Scan() {
+        c++
+    }
+
+    if err := scanner.Err(); err != nil && err != io.EOF {
+        return -1, err
+    }
+
+    return c, nil
+}
+
+func (lang *LanguageDefinition) Generate(seed int) string {
 }
 
 func main() {
